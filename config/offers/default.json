@@ -1,0 +1,14 @@
+[
+  {
+    "type": "percentage_discount",
+    "product": "Apples",
+    "value": 10
+  },
+  {
+    "type": "multi_buy",
+    "trigger_product": "Soup",
+    "trigger_qty": 2,
+    "discount_product": "Bread",
+    "discount_value": 50
+  }
+]
