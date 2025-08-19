@@ -4,8 +4,9 @@ from basket.catalog import Catalog
 from basket.offer import OfferManager
 from basket.utils import normalize_items
 
+# Main basket class orchestrating items and offers.
 class Basket:
-    """Main basket class orchestrating items and offers."""
+     
     def __init__(self, items, catalog_data, offers_data):
         self.catalog = Catalog(catalog_data)
         self.offer_manager = OfferManager(offers_data)
