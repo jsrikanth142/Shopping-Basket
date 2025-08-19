@@ -5,7 +5,6 @@ from collections import namedtuple
 Discount = namedtuple("Discount", ["description", "amount"])
 
 class OfferManager:
-    """Applies offers to a basket."""
     def __init__(self, offers: List[Dict]):
         self.offers = offers
 
@@ -30,5 +29,5 @@ class OfferManager:
                         discount_amount = item.price * Decimal(offer["discount_value"]) / 100
                         discounts.append(Discount(f"{item.name} {offer['discount_value']}% off", discount_amount))
             except Exception:
-                continue  # skip faulty offer
+                continue  # This used to skip faulty offer
         return discounts

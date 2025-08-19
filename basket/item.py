@@ -1,7 +1,8 @@
 from decimal import Decimal
 
+# Represents a single product item.
 class Item:
-    """Represents a single product item."""
+    
     def __init__(self, name: str, price: Decimal):
-        self.name = name       # Original name for display
+        self.name = name
         self.price = price

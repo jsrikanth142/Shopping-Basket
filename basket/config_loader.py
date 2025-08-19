@@ -21,11 +21,14 @@ def load_catalog(branch: str = DEFAULT_BRANCH) -> dict:
     file_path = CATALOGS_DIR / f"{branch}.json"
     if not file_path.exists():
         file_path = CATALOGS_DIR / f"{DEFAULT_BRANCH}.json"
+        
     data = safe_load_json(file_path)
+    logger.info(f"loading catalogs from :{file_path}")
     return {k: Decimal(v["price"]) for k, v in data.items()}
 
 def load_offers(branch: str = DEFAULT_BRANCH) -> list:
     file_path = OFFERS_DIR / f"{branch}.json"
     if not file_path.exists():
         file_path = OFFERS_DIR / f"{DEFAULT_BRANCH}.json"
+    logger.info(f"loading offers from :{file_path}")
     return safe_load_json(file_path)

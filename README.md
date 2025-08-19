@@ -23,15 +23,18 @@ This project is a **command-line shopping basket application** that calculates t
 shopping-basket/
 │
 ├── basket/ # Main application modules
-│ ├── init.py
 │ ├── basket.py # Core basket logic
 │ ├── catalog.py # Catalog management
+│ ├── config_loader.py # Configurations loader
+│ ├── item.py # product item
 │ ├── offer.py # Offer management
 │ └── utils.py # Utility functions
 │
 ├── config/ # Configuration files
-│ ├── catalog.json # Product catalog
-│ └── offers.json # Current offers
+│ ├── catalogs/*.json # Product catalog
+│ ├── offers/*.json # Current offers
+│ └── settings.py # configuration setting
+
 │
 ├── tests/ # Unit tests
 │ └── test_basket.py
@@ -49,7 +52,7 @@ shopping-basket/
 
 2. **Clone the repository**:
 ```bash
-git clone https://github.com/your-username/shopping-basket.git
+git clone git@github.com:jsrikanth142/Shopping-Basket.git
 cd shopping-basket
 ```
 
@@ -79,12 +82,12 @@ pip install -r requirements.txt
 ```bash
 Example:
 
-[
-    {"name": "apples", "price": "1.00"},
-    {"name": "milk", "price": "1.30"},
-    {"name": "bread", "price": "0.80"},
-    {"name": "soup", "price": "0.65"}
-]
+{
+            "Soup": Decimal("0.65"),
+            "Bread": Decimal("0.80"),
+            "Milk": Decimal("1.30"),
+            "Apples": Decimal("1.00")
+}
 ```
 
 ### Offers: config/offers.json
@@ -92,8 +95,8 @@ Example:
 Example:
 
 [
-    {"type": "percentage", "item": "apples", "discount": 10},
-    {"type": "buy_x_get_y", "buy_item": "soup", "buy_qty": 2, "free_item": "bread", "discount_percent": 50}
+            {"type": "percentage_discount", "product": "Apples", "value": 10},
+            {"type": "multi_buy", "trigger_product": "Soup", "trigger_qty": 2, "discount_product": "Bread", "discount_value": 50}
 ]
 ```
 
@@ -134,22 +137,10 @@ The project includes unit tests to validate:
 
 Run tests:
 ```bash
-python -m unittest discover -s tests
+ python -m pytest -v
 ```
 
-## 7. Logging
-
-Logs are stored with timestamps.
-
-- Transaction logs include:
-- Items processed
-- Subtotal
-- Discounts applied
-- Total price
-- Unknown items (if any)
-- Unknown items are logged as warnings.
-
-## 8. Notes
+## 7. Notes
 
 Item names are case-insensitive.
 
@@ -159,6 +150,6 @@ Designed for production usage on high volumes (modular, configuration-driven, an
 
 Unknown items do not stop processing; valid items are calculated normally.
 
-## 9. Support
+## 8. Support
 
 For issues or questions, contact the repository owner via GitHub.
